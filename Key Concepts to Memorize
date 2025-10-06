@@ -1,0 +1,49 @@
+File Permissions:
+chmod 755 file        # rwxr-xr-x
+chmod 644 file        # rw-r--r--
+chmod +x script       # Add execute permission
+
+# Permission codes:
+# 4 = read (r)
+# 2 = write (w) 
+# 1 = execute (x)
+# 0 = no permission (-)
+
+
+Process Management:
+ps aux                # Show all processes
+kill PID              # Terminate process
+kill -9 PID           # Force kill process
+top                   # Interactive process viewer
+
+
+Redirection & Pipes:
+command > file        # Redirect output to file (overwrite)
+command >> file       # Redirect output to file (append)
+command < file        # Redirect input from file
+command1 | command2   # Pipe output to another command
+
+🚨 Common Pitfalls & Solutions
+1. Spaces in Variable Assignment
+# WRONG:
+var = "value"
+
+# CORRECT:
+var="value"'
+
+2. String vs Numeric Comparison
+# Strings:
+[ "$a" == "$b" ]
+
+# Numbers:
+[ $a -eq $b ]
+
+3. File Test Conditions
+# File exists and is readable:
+if [ -r "$file" ]; then
+
+
+4. Command Substitution
+# Get output of command into variable:
+files=$(ls *.txt)
+count=$(wc -l < file.txt)
