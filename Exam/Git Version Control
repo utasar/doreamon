@@ -1,0 +1,41 @@
+Version Control Concepts:
+
+Tracking changes in files over time
+
+Collaboration between multiple developers
+
+Backup and recovery points
+
+SSH Clone Setup:
+
+bash
+# Generate SSH key (if needed):
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+# Copy public key to GitHub:
+cat ~/.ssh/id_rsa.pub
+
+# Clone with SSH:
+git clone git@github.com:username/repo.git
+
+
+Essential Git Commands:
+bash
+git clone repository_url             # Clone repository
+git status                           # Check repository status
+git add filename                     # Stage file for commit
+git add .                           # Stage all changes
+git commit -m "Commit message"      # Commit changes
+git push origin main                # Push to remote repository
+git pull origin main                # Pull latest changes
+git log                             # View commit history
+git diff                            # Show changes
+
+
+Basic Git Workflow:
+
+bash
+git add .                           # Stage changes
+git commit -m "Descriptive message" # Commit changes
+git push origin main                # Share changes
+git pull origin main                # Get others' changes
