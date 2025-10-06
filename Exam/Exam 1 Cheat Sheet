@@ -1,0 +1,124 @@
+# CEG 2350 - Exam 1 Comprehensive Cheat Sheet
+
+## 🖥️ **Shells & SSH**
+
+### Shell Types
+- **Windows**: PowerShell, CMD
+- **Linux/Mac**: bash, sh, zsh
+
+### SSH Commands
+```bash
+ssh username@hostname                  # Basic SSH connection
+ssh -i ~/.ssh/private_key user@host    # SSH with specific private key
+ssh-copy-id user@host                  # Copy public key to remote host
+
+
+SSH Key Management:
+# Key locations:
+~/.ssh/id_rsa                          # Private key (MUST be 600 permissions)
+~/.ssh/id_rsa.pub                      # Public key
+~/.ssh/authorized_keys                 # Authorized keys on remote host
+
+# Set proper permissions:
+chmod 600 ~/.ssh/id_rsa                # Private key - read/write owner only
+chmod 644 ~/.ssh/id_rsa.pub            # Public key - readable by all
+chmod 700 ~/.ssh/                      # SSH directory - owner only
+
+
+📁 Files, Directories & OS Structure
+Linux Filesystem Structure
+/               # Root directory
+/bin            # Essential binaries
+/etc            # Configuration files
+/home           # User home directories
+/var            # Variable data (logs, etc.)
+/tmp            # Temporary files
+
+Essential File Commands
+# Navigation & Listing
+pwd                                    # Print working directory
+ls -la                                 # List all files with details
+cd /path                               # Change directory
+cd ~                                   # Go to home directory
+cd -                                   # Return to previous directory
+
+# File Operations
+cp file1 file2                         # Copy file
+mv old new                             # Move/rename file
+rm file                                # Remove file
+rm -r directory                        # Remove directory recursively
+mkdir dirname                          # Create directory
+rmdir dirname                          # Remove empty directory
+touch file                             # Create empty file/update timestamp
+
+# File Viewing
+cat file                               # Display entire file
+head -n 10 file                        # Show first 10 lines
+tail -n 10 file                        # Show last 10 lines
+less file                              # View file interactively
+more file                              # View file page by page
+
+# Links
+ln -s target link_name                 # Create symbolic link
+ln target link_name                    # Create hard link
+
+File Naming & Extensions
+Extensions are conventions (.sh, .txt, .py)
+
+Linux is case-sensitive (File.txt ≠ file.txt)
+
+Avoid special characters in filenames
+
+🔐 Ownership & Permissions
+
+Linux Permission System
+rwx rwx rwx
+│││ │││ │││
+│││ │││ └── Other (world) permissions
+│││ └└└──── Group permissions  
+└└└──────── User (owner) permissions
+
+r = read (4)
+w = write (2) 
+x = execute (1)
+- = no permission (0)
+
+Permission Examples:
+-rwxr-xr--   # 754: User: rwx, Group: r-x, Other: r--
+drwxr-x---   # 750: Directory with these permissions
+-rw-r-----   # 640: User: rw-, Group: r--, Other: ---
+
+Permission Commands:
+chmod 755 file                         # rwxr-xr-x
+chmod 644 file                         # rw-r--r--
+chmod +x script.sh                     # Add execute permission
+chown user:group file                  # Change owner and group
+chgrp group file                       # Change group only
+
+# Common permission patterns:
+chmod 700 ~/.ssh                       # SSH directory - owner only
+chmod 600 ~/.ssh/id_rsa                # Private key - owner read/write
+chmod 755 script.sh                    # Executable script
+
+User & Group Management
+sudo adduser username                  # Add new user
+sudo deluser username                  # Delete user
+sudo usermod -aG groupname username    # Add user to group
+groups                                 # Show current user's groups
+whoami                                 # Show current username
+
+sudo & Root User
+sudo command                          # Execute as superuser
+sudo -i                               # Login as root
+su -                                  # Switch to root user
+
+⚙️ Environment & Customization
+Environment Variable
+echo $HOME                            # User's home directory
+echo $USER                            # Current username
+echo $SHELL                           # Current shell
+echo $PATH                            # Command search path
+
+# Set environment variables:
+export VARIABLE=value                 # Set for current session
+export PATH=$PATH:/new/path           # Add to PATH
