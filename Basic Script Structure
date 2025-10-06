@@ -1,0 +1,52 @@
+#!/bin/bash
+# This is a comment
+echo "Hello World"
+variable="value"
+echo $variable
+
+
+
+Conditionals:
+if [ condition ]; then
+    commands
+elif [ condition ]; then
+    commands
+else
+    commands
+fi
+
+# Test conditions:
+[ -f file ]          # File exists and is regular file
+[ -d dir ]           # Directory exists
+[ -r file ]          # File is readable
+[ $a -eq $b ]        # a equals b (numeric)
+[ $a == $b ]         # a equals b (string)
+[ $a -lt $b ]        # a less than b
+
+
+Loops:
+# For loop
+for i in 1 2 3; do
+    echo $i
+done
+
+# While loop
+while [ condition ]; do
+    commands
+done
+
+# Until loop
+until [ condition ]; do
+    commands
+done
+
+
+Functions:
+function_name() {
+    local var="local"  # Local variable
+    commands
+    return value
+}
+
+# Call function
+function_name arg1 arg2
