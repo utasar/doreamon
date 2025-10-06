@@ -1,0 +1,25 @@
+1. Command Identification
+Example: "What does this command do?"
+grep -v "^#" file | awk '{print $2}' | sort | uniq -c
+
+
+2. Regex Pattern Matching
+Example: "What strings match this regex?"
+^[A-Z][a-z]+\s+[0-9]{3}$
+
+3. Script Debugging
+Example: "Fix this bash script:"
+#!/bin/bash
+if [ $1 -gt 100 ]
+then
+    echo "Large number"
+fi
+
+
+
+4. Command Construction
+Example: "Write a command to find all .txt files modified in last 7 days and count lines"
+
+5. Output Prediction
+Example: "What is the output of this awk command?"
+echo "1 2 3" | awk '{print $2 + $3}'
