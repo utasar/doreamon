@@ -1,0 +1,527 @@
+# CEG 2350 - All Quiz Questions & Answers Archive
+
+## 🔍 **Quiz 1: Basic Commands & Scripting**
+
+### Question 1: If Statement Selection
+**Which if statement will work correctly?**
+
+**Options:**
+```bash
+if ( -d folder ); then
+    touch folder/hello.txt
+fi
+
+if[-d folder];then
+    touch folder/hello.txt
+fi
+
+if { -d folder }; then
+    touch folder/hello.txt
+fi
+
+if [[ -d folder ]]; then
+    touch folder/hello.txt
+fi
+✅ Correct Answer:
+
+bash
+if [[ -d folder ]]; then
+    touch folder/hello.txt
+fi
+Explanation: The [[ ]] syntax is preferred for conditional tests in Bash.
+
+
+
+Question 2: PATH Variable
+PATH holds paths to directories where executables can be found. True or False?
+
+✅ Correct Answer: True
+
+Explanation: PATH contains directories searched for executables, enabling commands to be run by name instead of full path.
+
+
+Question 3: Persistent Aliases
+Where should aliases be entered for persistent use in bash shell?
+
+Options:
+
+.git
+
+.vimrc
+
+.bashrc
+
+.
+
+.profile
+
+✅ Correct Answer: .bashrc
+
+Explanation: .bashrc is sourced for interactive Bash shells, making it ideal for aliases.
+
+
+
+Question 4: Shebang Purpose
+What does "#!/bin/bash" represent at the beginning of a bash script?
+
+Options:
+
+A comment indicating the script's purpose
+
+The version of Bash required
+
+Specifies the absolute path to the interpreter
+
+✅ Correct Answer: Specifies the absolute path to the interpreter for the script
+
+
+
+Question 5: Variable Assignment
+How do you assign a value to a variable in Bash?
+
+Options:
+
+$var = 10
+
+$var=10
+
+var=10
+
+var = 10
+
+✅ Correct Answer: var=10
+
+Explanation: No spaces around = and no $ on left side.
+
+
+
+Question 6: Reading User Input
+How do you read user input in a Bash script?
+
+Options:
+
+get $user
+
+read $user
+
+read user
+
+input $user
+
+✅ Correct Answer: read user
+
+Explanation: read command stores input in variable named without $.
+
+
+
+
+Question 7: Bash Argument Variables
+Match the variables to their values given: ./argdemo 1 2 78 hi "Test this"
+
+Variables to Match:
+
+$#
+
+$@
+
+$1
+
+$5
+
+$6
+
+Options:
+
+Contains all values passed by argument: 1 2 78 hi Test this
+
+Contains no value
+
+Contains number of arguments passed: 5
+
+Contains value of the 5th argument: "Test this"
+
+Contains value of the 1st argument: 1
+
+✅ Correct Answers:
+
+$# → Contains number of arguments passed: 5
+
+$@ → Contains all values passed by argument: 1 2 78 hi Test this
+
+$1 → Contains value of the 1st argument: 1
+
+$5 → Contains value of the 5th argument: "Test this"
+
+$6 → Contains no value
+
+
+
+Question 8: Exit Command Purpose
+What is the purpose of the exit command in a Bash script?
+
+Options:
+
+Exits a loop or conditional statement
+
+Exits the script with a specified exit code
+
+Exits the script and closes the terminal
+
+✅ Correct Answer: Exits the script with a specified exit code (if specified)
+
+
+
+Question 9: Numeric Comparison
+Which condition checks if n is less than or equal to 9?
+
+Options:
+
+while [ $n -le 9 ]; do
+
+while [ $n -ot 9 ]; do
+
+while [ $n -lt 9 ]; do
+
+✅ Correct Answer: while [ $n -le 9 ]; do
+
+Explanation: -le means "less than or equal to".
+
+
+
+Question 10: Case Statement
+What values output "You picked a lucky number"?
+
+bash
+echo "Choose a number: "
+read num
+case $num in
+    "1") echo "You're number 1." ;;
+    "7" | "3") echo "You picked a lucky number." ;;
+    "42" | "1234") echo "You picked a pop culture number" ;;
+    *) echo "Unknown number." ;;
+esac
+✅ Correct Answers: 7 and 3
+
+Explanation: These match the pattern "7" | "3" in the case statement.
+
+
+🔧 Quiz 2: sed Commands Matching
+Question 1: sed Command Matching
+Match sed commands with their behavior:
+
+Commands:
+
+sed 's/milk/almond-milk/g' data.txt
+
+sed -i.bak 's/milk/almond-milk/g' data.txt
+
+sed '/milk/d' data.txt
+
+sed 's/milk//g' data.txt
+
+sed 's/milk/almond-milk/' data.txt
+
+sed 's/milk//gI' data.txt
+
+Descriptions:
+
+Searches for "milk" (case insensitive) and replaces with nothing for all occurrences
+
+Searches for "milk" and replaces with "almond-milk" for all occurrences
+
+Searches for "milk" and replaces with nothing for all occurrences
+
+Searches for "milk" and replaces with "almond-milk" for first occurrence
+
+Searches for "milk" and replaces with "almond-milk" for all occurrences, creates backup
+
+Removes lines containing "milk"
+
+✅ Correct Matching:
+
+1 → Searches for "milk" and replaces with "almond-milk" for all occurrences
+
+2 → Searches for "milk" and replaces with "almond-milk" for all occurrences, creates backup
+
+3 → Removes lines containing "milk"
+
+4 → Searches for "milk" and replaces with nothing for all occurrences
+
+5 → Searches for "milk" and replaces with "almond-milk" for first occurrence
+
+6 → Searches for "milk" (case insensitive) and replaces with nothing for all occurrences
+
+
+
+📊 Quiz 3: awk Commands Matching
+Question 1: awk Command Matching
+Using this data:
+
+text
+Bucks Milwaukee    60 22 0.732
+Raptors Toronto    58 24 0.707  
+76ers Philadelphia 51 31 0.622
+Celtics Boston     49 33 0.598
+Pacers Indiana     48 34 0.585
+Commands:
+
+awk '{ print "Team Name:", $1}' teams.txt
+
+awk '/0.5/ { print $1 }' teams.txt
+
+awk '$2 ~ /ia/ { print $1 }' teams.txt
+
+awk '$2 !~ /ia/ { print $1 }' teams.txt
+
+awk '{ gsub(/Philadelphia/, "Dayton"); print $0 }' teams.txt
+
+Descriptions:
+
+If field in column 2 contains "ia", prints field in column 1
+
+If field in column 2 does NOT contain "ia", prints field in column 1
+
+If record contains pattern 0.5, prints field in column 1
+
+For each field in column 1, prints "Team name: " followed by the field value
+
+Globally substitutes Philadelphia for Dayton, then prints all records
+
+✅ Correct Matching:
+
+1 → For each field in column 1, prints "Team name: " followed by the field value
+
+2 → If record contains pattern 0.5, prints field in column 1
+
+3 → If field in column 2 contains "ia", prints field in column 1
+
+4 → If field in column 2 does NOT contain "ia", prints field in column 1
+
+5 → Globally substitutes Philadelphia for Dayton, then prints all records
+
+
+
+
+🎯 Quiz 4: Regular Expressions
+Question 1: Regex Validation
+What does this validate? ^\d{4}-\d{2}-\d{2}$
+
+Options:
+
+Matches any digits in format ####/##/##
+
+Matches any string containing digits
+
+Matches any digits in format ##-##-####
+
+Matches any digits in format ########
+
+Matches any digits in format ####-##-##
+
+✅ Correct Answer: Matches any digits in format ####-##-##
+
+Explanation: \d{4} = 4 digits, \d{2} = 2 digits, format: YYYY-MM-DD
+
+
+
+Question 2: Unique Lowercase Search
+Which command searches only unique entries containing only lowercase a-z?
+
+Options:
+
+sort data.txt | uniq | grep -E "^[a-z]+$"
+
+grep -E "^[a-z]+$" data.txt | uniq
+
+sort data.txt | uniq | grep -E "^\w+$"
+
+grep -E "^[a-z]+$" data.txt
+
+sort data.txt | uniq | grep -E ".*"
+
+✅ Correct Answer: sort data.txt | uniq | grep -E "^[a-z]+$"
+
+Explanation: Sorts, removes duplicates, then filters for lowercase lines.
+
+
+
+Question 3: grep Command Matching
+Match grep commands with actions:
+
+Commands:
+
+grep -E "[a]{2}" data.txt
+
+grep -v -E "[a]{2}" data.txt
+
+grep -c -E "[a]{2}" data.txt
+
+grep -i -E "[a]{2}" data.txt
+
+Descriptions:
+
+Enables extended regular expressions
+
+Enables extended regular expressions and inverts search pattern
+
+Enables extended regular expressions and prints number of matching lines
+
+Enables extended regular expressions and ignores case
+
+✅ Correct Matching:
+
+1 → Enables extended regular expressions
+
+2 → Enables extended regular expressions and inverts search pattern
+
+3 → Enables extended regular expressions and prints number of matching lines
+
+4 → Enables extended regular expressions and ignores case
+
+
+
+Question 4: sed Command Analysis
+What does this sed command do?
+
+bash
+sed 's/\([0-9]\+\) items/\1 units/' data.txt
+Options:
+
+Searches for "items" and replaces with "units", saves to file
+
+Searches for "items" and replaces with "units", no save
+
+Searches for number + "items" and replaces with number + "units"
+
+Searches for number + "items" and replaces with "1" + "units"
+
+✅ Correct Answer: Searches for pattern of at least one number followed by "items", and replaces with the number followed by "units"
+
+Explanation: \([0-9]\+\) captures numbers, \1 references the capture group.
+
+
+
+Question 5: Regex Validation
+What does this validate? ^[A-Za-z0-9]+$
+
+Options:
+
+Matches any string
+
+Matches strings containing special characters only
+
+Matches strings containing at least one letter or number
+
+✅ Correct Answer: Matches strings containing at least one letter or number
+
+Explanation: Entire string must consist of only letters/digits, at least one character.
+
+
+Question 6: Regex Validation
+What does this validate? (cat\?|dog\?|bird\?)$
+
+Options:
+
+Matches strings ending with "ca" or "cat", "do" or "dog", "bir" or "bird"
+
+Matches strings ending with "cat?", "dog?" or "bird?"
+
+Matches words with repeating pattern of "cat", "dog", or "bird"
+
+Matches strings containing "cat", "dog" or "bird"
+
+✅ Correct Answer: Matches strings ending with "cat?", "dog?" or "bird?"
+
+Explanation: \? escapes the ?, making it literal characters.
+
+
+
+🧠 Quiz 5: Advanced Concepts
+Question 1: File Permissions
+What does chmod 755 script.sh do?
+
+✅ Answer: Sets permissions to rwxr-xr-x (user: read/write/execute, group: read/execute, others: read/execute)
+
+Question 2: Shell Script Execution
+What's the difference between ./script.sh and bash script.sh?
+
+✅ Answer:
+
+./script.sh requires shebang and execute permission
+
+bash script.sh explicitly uses bash interpreter, no execute permission needed
+
+Question 3: Variable Scope
+What's the difference between these variable assignments?
+
+bash
+var="value"
+export var="value"
+✅ Answer:
+
+var="value" - Local to current shell
+
+export var="value" - Available to child processes
+
+Question 4: Command Substitution
+What's the difference between backticks and $()?
+
+bash
+result=`command`
+result=$(command)
+✅ Answer: Both do command substitution, but $() is preferred for nesting and readability.
+
+Question 5: Exit Codes
+What do these exit codes mean?
+
+0
+
+1
+
+2
+
+127
+
+✅ Answer:
+
+0 - Success
+
+1 - General error
+
+2 - Misuse of shell builtins
+
+127 - Command not found
+
+📋 Quick Reference Tables
+Test Operators Table
+Operator	Numeric	String	File
+Equal	-eq	=	-ef
+Not Equal	-ne	!=	! -ef
+Less Than	-lt	<	-ot
+Greater Than	-gt	>	-nt
+Zero Length	N/A	-z	N/A
+Non-zero Length	N/A	-n	N/A
+grep Options Table
+Option	Purpose
+-i	Case insensitive
+-v	Invert match
+-c	Count matches
+-n	Show line numbers
+-r	Recursive search
+-E	Extended regex
+-w	Whole word match
+sed Command Table
+Command	Purpose
+s/old/new/	Substitute first occurrence
+s/old/new/g	Substitute all occurrences
+/pattern/d	Delete matching lines
+p	Print
+q	Quit
+awk Special Variables
+Variable	Meaning
+NR	Current record number
+NF	Number of fields in current record
+$0	Entire input record
+$1, $2...	Individual fields
+
+
