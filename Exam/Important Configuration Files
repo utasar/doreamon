@@ -1,0 +1,49 @@
+~/.bashrc - Bash run commands (aliases, functions)
+
+~/.profile - Login initialization
+
+~/.bash_profile - Bash-specific login config
+
+
+Common Utility Commands
+diff file1 file2                      # Compare files
+find . -name "*.txt"                  # Find files by name
+file filename                         # Determine file type
+wc file                               # Word count (lines, words, bytes)
+wc -l file                            # Line count only
+sort file                             # Sort lines
+uniq file                             # Remove duplicate lines
+uniq -c file                          # Count unique occurrences
+whereis command                       # Locate binary, source, manual
+which command                         # Show full path of commands
+
+🔄 I/O Streams & Redirection
+Standard Streams
+0 - stdin (Standard Input)
+
+1 - stdout (Standard Output)
+
+2 - stderr (Standard Error)
+
+Redirection Operators:
+command > file                        # Redirect stdout to file (overwrite)
+command >> file                       # Redirect stdout to file (append)
+command < file                        # Redirect stdin from file
+command 2> error.log                  # Redirect stderr to file
+command > output.log 2>&1             # Redirect both stdout and stderr
+command1 | command2                   # Pipe stdout to another command
+command | tee file                    # Display AND save to file
+
+
+📜 Script Execution Methods
+4 Ways to Execute Scripts
+source script.sh                      # Execute in current shell
+. script.sh                           # Same as source
+
+bash script.sh                        # Specify interpreter
+
+./script.sh                           # Using shebang (requires +x permission)
+# Script must start with: #!/bin/bash
+
+script.sh                             # From any location (must be in PATH)
+
