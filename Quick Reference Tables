@@ -1,0 +1,23 @@
+grep Options Table
+Option	Purpose
+-i	Case insensitive
+-v	Invert match
+-c	Count matches
+-n	Show line numbers
+-r	Recursive search
+-E	Extended regex
+
+sed Command Table
+Command	Purpose
+s/old/new/	Substitute
+/pattern/d	Delete lines
+p	Print
+q	Quit
+
+awk Special Variables
+
+Variable	Meaning
+NR	Current record number
+NF	Number of fields
+$0	Entire input record
+$1, $2...	Individual fields
