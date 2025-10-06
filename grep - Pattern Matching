@@ -1,0 +1,13 @@
+grep "pattern" file              # Basic search
+grep -i "pattern" file           # Case insensitive
+grep -v "pattern" file           # Invert match (lines NOT containing)
+grep -c "pattern" file           # Count matches
+grep -E "regex" file             # Extended regex
+grep -r "pattern" dir/           # Recursive search
+grep -n "pattern" file           # Show line numbers
+
+# Common Patterns:
+grep "^start" file               # Lines starting with "start"
+grep "end$" file                 # Lines ending with "end"
+grep "[0-9]" file                # Lines containing digits
+grep -E "[A-Z]{3}" file          # Exactly 3 uppercase letters
