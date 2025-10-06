@@ -1,0 +1,10 @@
+sed 's/old/new/' file            # Replace first occurrence per line
+sed 's/old/new/g' file           # Replace all occurrences
+sed 's/old/new/2' file           # Replace 2nd occurrence only
+sed 's/old/new/I' file           # Case insensitive replace
+sed '/pattern/d' file            # Delete lines matching pattern
+sed -n '5,10p' file              # Print lines 5-10 only
+sed -i 's/old/new/g' file        # In-place edit (modifies file)
+
+# Multiple commands:
+sed -e 's/old/new/' -e '/pattern/d' file
