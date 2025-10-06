@@ -1,0 +1,24 @@
+# CEG2350 - Operating Systems Exam Cheat Sheet
+
+## 🚀 Essential Commands Quick Reference
+
+### File System Operations
+```bash
+# Navigation
+pwd                      # Print working directory
+ls -la                   # List all files with details
+cd /path                 # Change directory
+find . -name "*.txt"     # Find files by name
+
+# File Management
+cp file1 file2           # Copy file
+mv old new               # Move/rename file
+rm file                  # Remove file
+mkdir dir                # Create directory
+rmdir dir                # Remove empty directory
+
+# File Viewing
+cat file                 # Display entire file
+head -n 10 file          # Show first 10 lines
+tail -n 10 file          # Show last 10 lines
+less file                # View file interactively
