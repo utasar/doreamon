@@ -1,0 +1,10 @@
+.        # Any single character
+*        # Zero or more of previous
++        # One or more of previous
+?        # Zero or one of previous
+^        # Start of line
+$        # End of line
+[abc]    # Any of a, b, or c
+[^abc]   # Anything except a, b, or c
+[a-z]    # Any lowercase letter
+[0-9]    # Any digit
