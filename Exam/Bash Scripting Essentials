@@ -1,0 +1,138 @@
+🐚 Bash Scripting Essentials
+Basic Script Structure
+bash
+#!/bin/bash
+# This is a comment
+echo "Hello World"
+
+
+Variables
+bash
+name="John"                          # Variable assignment
+echo $name                           # Variable usage
+echo "Hello $name"                   # Variable in string
+result=$(ls -l)                      # Command substitution
+
+Reading Input
+bash
+echo "Enter your name:"
+read name
+echo "Hello $name"
+
+read -p "Enter age: " age           # Prompt and read in one line
+
+
+
+Output Commands
+bash
+echo "Text"                          # Basic output with newline
+echo -n "No newline"                 # Output without newline
+printf "Name: %s\n" $name            # Formatted output
+
+
+Script Arguments
+bash
+$0                                   # Script name
+$1, $2, $3...                        # Positional arguments
+$#                                   # Number of arguments
+$@                                   # All arguments as separate words
+$*                                   # All arguments as single word
+
+
+
+
+Conditionals & Tests
+bash
+# Test conditions:
+[ -f file ]                          # File exists and is regular file
+[ -d dir ]                           # Directory exists
+[ -r file ]                          # File is readable
+[ -w file ]                          # File is writable
+[ -x file ]                          # File is executable
+[ -z "$var" ]                        # Variable is empty string
+[ -n "$var" ]                        # Variable is not empty
+[ $a -eq $b ]                        # a equals b (numeric)
+[ $a -ne $b ]                        # a not equal to b
+[ $a -lt $b ]                        # a less than b
+[ $a -le $b ]                        # a less than or equal to b
+[ $a -gt $b ]                        # a greater than b
+[ $a -ge $b ]                        # a greater than or equal to b
+[ "$str1" = "$str2" ]                # String equality
+[ "$str1" != "$str2" ]               # String inequality
+
+
+
+If Statements
+bash
+if [ condition ]; then
+    commands
+elif [ condition ]; then
+    commands
+else
+    commands
+fi
+
+# Example:
+if [ -f "$file" ]; then
+    echo "File exists"
+elif [ -d "$file" ]; then
+    echo "It's a directory"
+else
+    echo "Not found"
+fi
+
+
+Loops
+bash
+# For loop
+for i in 1 2 3; do
+    echo $i
+done
+
+for file in *.txt; do
+    echo "Processing $file"
+done
+
+
+# While loop
+while [ condition ]; do
+    commands
+done
+
+# Until loop
+until [ condition ]; do
+    commands
+done
+
+# C-style for loop
+for ((i=0; i<10; i++)); do
+    echo $i
+done
+Case Statements
+bash
+case $variable in
+    pattern1)
+        commands
+        ;;
+    pattern2)
+        commands
+        ;;
+    *)
+        default commands
+        ;;
+esac
+
+
+# Example:
+case $1 in
+    "start")
+        echo "Starting..."
+        ;;
+    "stop")
+        echo "Stopping..."
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        ;;
+esac
+
