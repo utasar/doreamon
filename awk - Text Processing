@@ -1,0 +1,12 @@
+awk '{print $1}' file            # Print first field
+awk -F: '{print $1}' file        # Use colon as field separator
+awk '/pattern/ {print $0}' file  # Print lines matching pattern
+awk '$3 > 100 {print $1, $3}'    # Print if 3rd field > 100
+awk '{sum += $1} END {print sum}' # Calculate sum
+awk 'NR % 2 == 0' file           # Print even-numbered lines
+
+# Built-in variables:
+# NR - Number of Records (line number)
+# NF - Number of Fields in current record
+# $0 - Entire line
+# $1, $2... - Individual fields
