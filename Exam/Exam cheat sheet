@@ -1,0 +1,116 @@
+# CEG 2350 - Exam Command Cheat Sheet
+
+## 🔍 **1. grep - Time Range Matching**
+
+### Problem:
+Match log lines between 1:20 PM and 1:30 PM in access.log
+
+### Solution:
+```bash
+grep -cE '\[[^]]*:13:(2[0-9]):[0-9]+' access.log
+
+Explanation:
+\[ - Matches opening [ before timestamp
+
+[^]]* - Consumes everything up to time part
+
+:13: - Matches hour 13 (1 PM)
+
+(2[0-9]) - Matches minutes 20-29
+
+:[0-9]+ - Matches seconds
+
+-cE - Count matches using extended regex
+
+
+🌐 2. grep - IP Address Filtering
+Problem:
+Count logs with client IP starting with 192
+Solution:
+grep -cE '^192\.[0-9]+\.[0-9]+\.[0-9]+' access.log
+Explanation:
+^192\. - Line starts with "192."
+
+\.[0-9]+ - Matches remaining octets
+
+Safe pattern that avoids false matches
+
+
+
+🔄 3. sed - HTML to Markdown Conversion
+Problem:
+Convert HTML tags to Markdown format
+
+Solution:
+sed -i 's|</[^>]*>||g' sedfile.md
+sed -i 's|^[[:space:]]*<li>|- |g' sedfile.md
+sed -i 's|<h1>|# |g' sedfile.md
+sed -i 's|<h2>|## |g' sedfile.md
+sed -i 's|<ul>||g; s|</ul>||g; s|<html>||g' sedfile.md
+sed -i 's|Batches|Matches|g' sedfile.md
+
+Explanation:
+s|</[^>]*>||g - Removes any closing tag
+
+^[[:space:]]*<li>|- - Converts list items with leading spaces
+
+| delimiter used for readability with HTML tags
+
+-i flag for in-place file editing
+
+
+4. awk - Sales Data Queries
+Problem:
+Various data processing tasks on sales.txt
+
+Solutions:
+# February 2024 sales
+awk '/2024-02/' sales.txt
+
+# Products with unit price ≥ 100
+awk '$5 >= 100 {print $2}' sales.txt
+
+# TV products with name and quantity
+awk '/TV/ {print $2, $4}' sales.txt
+
+# Total revenue for Kitchen category
+awk '/Kitchen/ {sum += $6} END {print sum}' sales.txt
+
+# Replace Sofa with Couch
+awk '{gsub(/Sofa/, "Couch"); print}' sales.txt > updated-sales.txt
+
+Explanation:
+/2024-02/ - Pattern match for dates
+
+$5 >= 100 - Numeric comparison on 5th field
+
+/TV/ - String pattern matching
+
+sum += $6 - Accumulate revenue, print at END
+
+gsub(/Sofa/, "Couch") - Global substitution
+
+
+🔧 5. Git - Push Rejection Fix
+Problem:
+Remote contains work you don't have locally
+
+Safe Solution:
+# Commit your changes first
+git add -A
+git commit -m "WIP before pulling"
+
+# Pull with rebase to integrate changes
+git pull origin main --rebase
+
+# Push your updated branch
+git push origin main
+
+Alternative Solutions:
+# ONLY if you're certain - force push (DANGEROUS)
+git push --force
+
+# Discard local changes and use remote
+git restore .
+git pull origin main --rebase
+git push origin main
