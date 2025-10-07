@@ -41,14 +41,16 @@ Question 2 options:
 
 
 .md$
-**Answer:** `\.md$`  
+**Answer:** `\.md$`  Q2:
+✅ \.md$
 **Explanation:** Matches files ending with `.md`
 
 Question 3 (Bonus) (1 point) 
 [BONUS] Detail all parts, and the result of running, the following command.  Score will be all or nothing.
 
 cd "$(dirname "$(find ~ -type f -name README.md | head -1)")"
-Question 3 options:
+Question 3 options:➡️ Finds the first README.md file in your home directory, extracts its directory, and changes to it.
+
 Question 4 (1 point) 
 Clients authenticating or connecting via SSH need to have a ___ key file to authenticate to the remote user account
 
@@ -64,6 +66,7 @@ constrained
 
 
 private
+✅ private
 
 Question 5 (1 point) 
 For Ubuntu Linux, what is the default shell?
@@ -83,6 +86,8 @@ sh
 
 
 zsh
+✅ bash
+
 
 Question 6 (1 point) 
 Remote user accounts that clients authenticate and connect to via SSH need to have a ___ key stored in the remote user's authorized_keys file
@@ -99,6 +104,7 @@ private
 
 
 public
+✅ public
 
 Question 7 (1 point) 
 Given the following command:
@@ -112,6 +118,7 @@ relative
 
 
 absolute
+✅ relative
 
 Question 8 (1 point) 
 Given the following command:
@@ -125,21 +132,21 @@ Given the following command:
 
 ssh -i .\labkey.pem jsmith@fry.wright.edu
 What is the name of the private key file used for authentication?
-
+✅ fry.wright.edu
 Question 9 options:
 Question 10 (1 point) 
 Given the following command:
 
 ssh -i .\labkey.pem jsmith@fry.wright.edu
 What is the username on the remote system?
-
+labkey.pem
 Question 10 options:
  
 Given the following command:
 
 ssh -i .\labkey.pem jsmith@fry.wright.edu
 What does the -i flag allow specification of?
-
+jsmith
 Question 11 options:
 
 Identity File (a private key file must be specified afterwards if a non-default name is used in a non-default location)
@@ -149,6 +156,8 @@ Verbosity (outputs debug log information about the connection attempt)
 
 
 Login name (the user to log in as on the remote machine)
+✅ Identity File (a private key file must be specified afterwards if a non-default name is used in a non-default location)
+
 
 Question 12 (1 point) 
 If a file contains markdown syntax, what extension notifies applications to render the markdown formatting?
@@ -165,6 +174,7 @@ Question 12 options:
 
 
 .docx
+✅ .md
 
 Question 13 (1 point) 
 I have a repository on GitHub, but do not have a copy of the repository locally on the system I am using.  Assuming SSH authentication with my GitHub account has been set up, what is my next step?
@@ -184,6 +194,8 @@ git pull
 
 
 git push
+✅ git clone repo_URL
+
 
 Question 14 (1 point) 
 A user is working in a git repository folder cloned from GitHub and wants to synchronize their changes to main.java to the GitHub repository.  The output of `git status` is:
@@ -197,7 +209,10 @@ Changes not staged for commit:
   (use "git restore <file>..." to discard changes in working directory)
   modified: main.java
 What commands are needed to synchronize the latest changes in main.java with the GitHub repository?
-
+``` git add main.java  
+git commit -m "update main.java"  
+git push
+```
 Question 14 options:
 Question 15 (1 point) 
 In order to create passwordless SSH authentication with GitHub, we set up SSH authentication on the system using ssh-keygen to create a key pair. 
@@ -209,7 +224,7 @@ Question 15 options:
 ~/labsuser.pem
 
 
-~/.ssh/id_ed25519
+~/.ssh/id_ed25519 (corrwect)
 
 
 None of the above
@@ -230,6 +245,7 @@ private key (contents of id_ed25519)
 
 
 public key (contents of id_ed25519.pub)
+(correct)
 
 Question 17 (1 point) 
  Saved
@@ -244,6 +260,7 @@ hint: to the same ref. You may want to first integrate the remote changes
 hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 What command do I need to run next?
+git pull
 
 Question 17 options:
 
@@ -288,6 +305,15 @@ uses : as a separator
 
 
 used by system to search through directories in order listed in PATH for an executable that matches the command entered
+✅ Correct statements:
+
+can view value with either echo $PATH or printenv PATH
+
+consists of absolute paths to directories where executables are located
+
+uses : as a separator
+
+used by system to search through directories in order listed in PATH for an executable that matches the command entered
 
 Question 19 (1 point) 
 I have a few aliases that work in my bash shell I want to use persistently instead of setting them up each time I log on.  What file should I enter these aliases in?
@@ -300,7 +326,7 @@ Question 19 options:
 .profile
 
 
-.bashrc
+.bashrc(correct)
 
 
 .vimrc
@@ -315,13 +341,14 @@ find README.md ~Question 21 (1 point)
 What does the following command do?
 
 ls ..
+✅ find ~ -name README.md
 
 Question 21 options:
 
 lists the contents of a directory named ".."
 
 
-lists the contents of the parent directory relative to the directory you are in
+lists the contents of the parent directory relative to the directory you are in(correct)
 
 
 lists the contents of the current directory
@@ -339,7 +366,7 @@ read dir
 
 if [[ -d $dir ]]
 then
-        echo "As promised" > $dir/toldya.txt
+        echo "As promised" > $dir/toldya.txt  (coorect)
 else
         echo "Directory does not exist"
 fi
@@ -398,7 +425,7 @@ Question 23 options:
 tasktrack
 
 
-bash tasktrack
+bash tasktrack (correct)
 
 
 ./tasktrack
@@ -417,7 +444,7 @@ OR
 
 Question 24 options:
 	True
-	False
+	False (false)
 Question 25 (1 point) 
 What does the following script do?
 
@@ -441,6 +468,7 @@ And that the value of PATH is:
 
 /home/ubuntu:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
  Select all valid ways to run the script:
+ ✅ Prints “Bubbles.” only if the second argument equals 3.
 
 Question 26 options:
 
@@ -469,8 +497,9 @@ fi
 ```
 
 Provide an example of CORRECTLY using the script to meet the condition in the FIRST blank
-
+./checker a
 Provide an example of INCORRECTLY using the script to meet the condition in the SECOND blank
+./checker 3
 
 Question 27 options:
 Question 28 (1 point) 
@@ -483,7 +512,7 @@ Question 28 options:
 root command
 
 
-sudo command
+sudo command(correct)
 
 
 cd command
@@ -503,7 +532,7 @@ The user jsnow can edit test.txt
 
 Question 29 options:
 	True
-	False
+	False(false)
 Question 30 (1 point) 
 Choose the command that will add the user jsmith to the group friends
 
@@ -516,6 +545,7 @@ chgrp jsmith friends
 chgrp friends jsmith
 
 usermod -a -G friends jsmith
+✅ usermod -a -G friends jsmith
  
 jsmith needs access to read and edit a file in the user sjane's home folder.  Which of the following setups provide the least additional privileges?
 
@@ -531,7 +561,9 @@ add jsmith to a group, allow the group access (read and execute permissions) to 
 
 
 add jsmith to a group, allow the group access (read and execute permissions) to sjane's folder, then allow that group read and write access to all files and subdirectories in sjane's folder (recursively)
-
+31:
+✅
+add jsmith to a group, allow the group access (read and execute permissions) to sjane's folder, allow that group read and write access to the required file in sjane's folder
 Question 32 (1 point) 
 Find the matching permission translation for the following command:
 
@@ -549,3 +581,4 @@ user = execute; group = read; other = read write
 
 user = read; group = read write; other = read execute
 
+✅ user = read; group = write execute; other = read write
