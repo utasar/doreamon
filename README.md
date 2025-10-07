@@ -6,6 +6,8 @@ Given the following regex pattern:
 In the first blank give a string that WILL match
 
 In the second blank give string that will NOT match
+✅ **Match:** `cake $12.50`  
+❌ **Does not match:** `cak $12.5`
 
 Question 1 options:
 Question 2 (1 point) 
@@ -39,6 +41,8 @@ Question 2 options:
 
 
 .md$
+**Answer:** `\.md$`  
+**Explanation:** Matches files ending with `.md`
 
 Question 3 (Bonus) (1 point) 
 [BONUS] Detail all parts, and the result of running, the following command.  Score will be all or nothing.
