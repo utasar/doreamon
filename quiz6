@@ -1,0 +1,47 @@
+# Quiz 6 - Boot Process & Virtual Machines - Answers
+
+**Question 1**  
+What does POST stand for in the context of the boot process?  
+**Answer:** Power-On Self-Test
+
+**Question 2**  
+What is the purpose of the bootloader in the boot process?  
+**Answer:** Load the operating system kernel into memory
+
+**Question 3**  
+Which is the correct order of the boot process steps in a typical PC?  
+**Answer:** POST, BIOS/UEFI initialization, bootloader, kernel initialization
+
+**Question 4**  
+Which keyboard key is commonly used to access the BIOS/UEFI setup utility?  
+**Answer:** Del / Delete
+
+**Question 5** - BIOS vs UEFI
+- Supports GPT partitioning scheme → **UEFI**
+- Limited security features. Can use a password → **BIOS**
+- Offers secure boot to validate bootloader and driver signatures → **UEFI**
+- Supports MBR partitioning scheme → **BIOS**
+- Offers a graphical user interface (GUI) with mouse support → **UEFI**
+- Text-based interface with keyboard navigation → **BIOS**
+
+**Question 6**  
+Which hypervisor runs directly on physical hardware without a host OS?  
+**Answer:** Type 1
+
+**Question 7**  
+Host: 12 CPU cores, 16 GB RAM | Host needs: 2 cores, 4 GB RAM | Each VM: 2 cores, 4 GB RAM  
+**Answer:** 3 VMs  
+*(Calculation: Available: 10 cores, 12 GB RAM. Limiting factor: RAM = 12/4 = 3 VMs)*
+
+**Question 8**  
+What technology allows/manages multiple VMs on a single physical machine?  
+**Answer:** Hypervisor
+
+**Question 9**  
+Can VMs access the Internet via the host machine?  
+**Answer:** True
+
+**Question 10**  
+Host: 1 TB disk | Host needs: 100 GB | Each VM: 20 GB  
+**Answer:** 45 VMs  
+*(Calculation: 1000 - 100 = 900 GB available → 900/20 = 45 VMs)*
