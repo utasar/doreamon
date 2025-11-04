@@ -1,0 +1,250 @@
+--
+
+### ✅ Q1 — Which `awk` statement prints only names beginning with J?
+
+Options:
+- A) awk '$0 ~ /J/ { print $1 }'
+- B) awk '$0 ~ /J/ { print $0 }'
+- ✅ C) awk '$1 ~ /^J/ { print $1 }'
+- D) awk '$1 ~ /J/ { print $1 }'
+
+✔ Explanation: `^J` anchors match to the first letter of the first column.
+
+---
+
+### ✅ Q2 — What command outputs:
+Bob
+bubbles
+
+bash
+Copy code
+
+Answer:
+```bash
+./eval.sh -n Bob -a 60
+```
+✔ Explanation: b > 55 → prints "bubbles".
+
+✅ Q3 — What command outputs:
+css
+Copy code
+Sam
+b
+Answer:
+
+bash
+Copy code
+./eval.sh -n Sam -a 10
+✔ Explanation: 10 not > 55 → prints "b".
+
+✅ Q4 — What command prints usage message?
+Answer:
+
+bash
+Copy code
+./eval.sh -z
+✔ Explanation: -z is an invalid option → triggers usage output.
+
+✅ Q5 — Use sed to fix obfuscated words
+Return these:
+
+nginx
+Copy code
+apple
+bananas  
+pineapples
+Correct 3 answers:
+
+✅ sed 's/@/a/g'
+
+✅ sed 's/3/e/g'
+
+✅ sed 's/1/i/g'
+
+✔ Explanation: Replace @ → a, 3 → e, 1 → i.
+
+✅ Q6 — Search bash history for rm using piping
+Answer:
+
+bash
+Copy code
+history | grep rm
+✔ Explanation: Pipes all history commands into grep filter.
+
+✅ Q7 — Select all true about UEFI (choose 4)
+Correct:
+
+✅ Uses bootloaders stored in an EFI partition
+
+✅ Supports GPT partition tables
+
+✅ Provides a GUI before OS loads
+
+✅ Supports secure boot
+
+✅ Q8 — Select all true about the Linux kernel (choose 5)
+Correct:
+
+✅ Manages processes
+
+✅ Can be updated without reinstalling OS
+
+✅ Manages memory
+
+✅ Manages filesystem structure
+
+✅ Is loaded into memory by the grub bootloader
+
+✅ Q9 — True about BIOS (choose 4)
+Correct:
+
+✅ Does not support secure boot
+
+✅ Uses a bootloader in MBR (first disk sector)
+
+✅ Provides text-based interface with keyboard support
+
+✅ Supports MBR partition tables
+
+✅ Q10 — What does the partition table do?
+Correct:
+
+✅ Manages disk partitions
+
+The Basics — bat / batcat Tools
+✅ Q11 — Allow command bat instead of batcat
+Answer:
+
+bash
+Copy code
+alias bat="batcat"
+Or symlink:
+
+bash
+Copy code
+sudo ln -s /usr/bin/batcat /usr/local/bin/bat
+✅ Q12 — Valid ways to run batcat (2)
+Correct:
+
+✅ /usr/bin/batcat
+
+✅ batcat
+
+✅ Q13 [BONUS] — Show file with line numbers using batcat
+Answer:
+
+bash
+Copy code
+batcat -n filename
+✅ Q14 — Install bat with apt (requires sudo)
+Answer:
+
+bash
+Copy code
+sudo apt install bat
+✅ Q15 — Who can run batcat?
+Correct:
+
+✅ Any user
+
+✔ Explanation: Permissions 755 allow all users to execute.
+
+✅ Q16 — What does which batcat show?
+Correct:
+
+✅ Where the batcat program is located
+
+System & Hardware
+✅ Q17 — How many CPU cores?
+Correct:
+
+✅ 1
+
+✅ Q18 — Software managing VMs hardware resources
+Correct:
+
+✅ hypervisor
+
+✅ Q19 — Disk size from lsblk
+Correct:
+
+✅ 16G
+
+✅ Q20 — How much RAM?
+Correct:
+
+✅ 1G
+
+✅ Q21 — Match components
+Component	Correct Match
+HDD/SSD/NVME	✅ Long-term storage
+GPU	✅ Graphics operations
+Motherboard	✅ Main printed board, communication hub
+CPU	✅ Executes instructions
+RAM	✅ Temporary storage
+
+✅ Q22 — First Linux process
+Correct:
+
+✅ systemd / init
+
+Process Control
+✅ Q23 — Kill the sleep process
+Example:
+
+bash
+Copy code
+kill 3138
+(Use PID of sleep from table)
+
+✅ Q24 — PID of Zombie process
+Correct:
+
+✅ 3181
+
+✅ Q25 — Running kill 3076 would…
+Correct:
+
+✅ Shell would exit, terminating child processes
+
+Filesystems
+✅ Q26 — Enable service at boot
+bash
+Copy code
+sudo systemctl enable service_name
+✅ Q27 — Auto-mount on boot file
+Correct:
+
+✅ /etc/fstab
+
+✅ Q28 — Correct order for new disk setup
+Correct order:
+1️⃣ Create partition table
+2️⃣ Create partitions
+3️⃣ Create filesystem
+4️⃣ Mount filesystem
+
+✅ Q29 — OS installs to a…
+Correct:
+
+✅ partition
+
+✅ Q30 — Commands in correct disk setup order
+Order:
+1️⃣ gdisk /dev/device_name
+2️⃣ mkfs.ext4 /dev/device_name
+3️⃣ mount /mount_location /dev/device_name
+
+✅ Q31 — If filesystem unmounted → data lost?
+Correct:
+
+✅ False
+
+✔ Explanation: Data remains on disk.
+
+✅ Q32 — If partition table altered → data lost?
+Correct:
+
+✅ False
+
+✔ Explanation: Data may still exist unless overwritten.
