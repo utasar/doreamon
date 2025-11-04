@@ -1,0 +1,64 @@
+# ✅ Quiz 1 – Basic Commands (Answer Key Included)
+---
+
+## 1️⃣ Which command lists files in the current directory?
+- ✅ ls
+- cd
+- rm
+- touch
+
+## 2️⃣ Which command changes directories?
+- mkdir
+- ✅ cd
+- pwd
+- man
+
+## 3️⃣ Which command shows your current directory?
+- ls
+- rm
+- ✅ pwd
+- cd
+
+## 4️⃣ Create an empty file named `notes.txt`:
+- rm notes.txt
+- ✅ touch notes.txt
+- mkdir notes.txt
+- nano notes.txt
+
+## 5️⃣ Display contents of a file:
+- mv file.txt
+- ✅ cat file.txt
+- rmdir file.txt
+- ls file.txt
+
+## 6️⃣ Remove a file named `temp.txt`:
+- rmdir temp.txt
+- mkdir temp.txt
+- ✅ rm temp.txt
+- chmod temp.txt
+
+## 7️⃣ Show first 10 lines of a file:
+- ✅ head file.txt
+- tail file.txt
+- top file.txt
+- nano file.txt
+
+## 8️⃣ Show last 10 lines of a file:
+- cat file.txt
+- ✅ tail file.txt
+- bottom file.txt
+- rm file.txt
+
+## 9️⃣ Which command shows manual pages/help?
+- pwd
+- cd
+- ✅ man command
+- ls -h
+
+## 🔟 Clear your screen:
+- pwd
+- ✅ clear
+- rm *
+- ls -a
+
+---
