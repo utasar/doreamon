@@ -1,0 +1,87 @@
+# ✅ Quiz 2 – Git & Permissions (Answer Key Included)
+---
+
+## 1️⃣ Which command initializes a new Git repository?
+- ls
+- ✅ git init
+- git clone
+- git push
+
+## 2️⃣ Which command stages files for commit?
+- git status
+- ✅ git add
+- git pull
+- git branch
+
+## 3️⃣ Which command records staged changes to the repo history?
+- git fetch
+- ✅ git commit -m "message"
+- git push
+- git rm
+
+## 4️⃣ Which command uploads commits to GitHub?
+- git commit
+- git log
+- ✅ git push
+- git add .
+
+## 5️⃣ Which shows current file status in Git?
+- git log
+- ✅ git status
+- git init
+- ls
+
+## 6️⃣ Show commit history:
+- cat history
+- ✅ git log
+- git status
+- git reset
+
+---
+
+## 🔐 Linux File Permissions
+
+## 7️⃣ What does `r` mean?
+- rename
+- ✅ read
+- remove
+- recursion
+
+## 8️⃣ What does `w` allow?
+- execute file
+- ✅ write/edit file
+- list file
+- remove users
+
+## 9️⃣ Which users are included in permissions?
+- Only root
+- ✅ Owner, Group, Others
+- Only Owner
+- Only Others
+
+## 🔟 Change permissions of a file:
+- chmod user file.sh
+- ✅ chmod 755 file.sh
+- rootmod file.sh
+- addperm file.sh
+
+## 1️⃣1️⃣ Change the owner of a file:
+- mv owner file
+- ✅ chown user:group file
+- chmod user file
+- ls -l file
+
+## 1️⃣2️⃣ Execute permission is required to:
+- read file contents
+- view file properties
+- ✅ run/execute a script
+- delete file
+
+## 1️⃣3️⃣ What does `sudo` do?
+- Switches directories
+- ✅ Runs a command with superuser privileges
+- Deletes all files
+- Changes hostname
+
+---
+
