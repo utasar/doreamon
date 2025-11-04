@@ -1,0 +1,83 @@
+# ✅ Quiz 3 – File Manipulation (Answer Key Included)
+---
+
+## 📂 Basic File Commands
+
+### 1️⃣ Create an empty file
+- ls new.txt
+- mv new.txt
+- ✅ touch new.txt
+- make new.txt
+
+### 2️⃣ Copy file.txt to /tmp
+- file.txt >> /tmp
+- ✅ cp file.txt /tmp
+- mv file.txt /tmp
+- cat file.txt /tmp
+
+### 3️⃣ Move a file into a folder
+- cp data.txt folder/
+- ✅ mv data.txt folder/
+- mkdir data folder
+- rm data.txt folder/
+
+### 4️⃣ Remove a file permanently
+- del file.txt
+- ✅ rm file.txt
+- rmdir file.txt
+- ls -rm file.txt
+
+### 5️⃣ Remove an empty directory
+- delete dir
+- rm dir
+- ✅ rmdir dir
+- cp dir /dev/null
+
+---
+
+## 📜 Viewing Files
+
+### 6️⃣ View first 10 lines of a file
+- tail file.txt
+- ✅ head file.txt
+- cat head file.txt
+- less file.txt
+
+### 7️⃣ View last lines and keep updating
+- ✅ tail -f logs.txt
+- head -f logs.txt
+- ls -f logs.txt
+- cat logs.txt
+
+### 8️⃣ Display a full file one page at a time
+- cat file.txt
+- ✅ less file.txt
+- grep file.txt
+- rm file.txt
+
+### 9️⃣ Show the type of a file
+- cat file.txt
+- ✅ file file.txt
+- grep file.txt
+- stat file.txt
+
+---
+
+## 🔗 Links
+
+### 🔟 Create a hard link
+- ln -s original.txt new.txt
+- ✅ ln original.txt new.txt
+- cp original.txt new.txt
+- hardlink new.txt original.txt
+
+### 1️⃣1️⃣ Create a symbolic (soft) link
+- ln original.txt new.txt
+- ✅ ln -s original.txt new.txt
+- mv original.txt new.txt
+- cat -s original.txt new.txt
+
+---
+
+
+
