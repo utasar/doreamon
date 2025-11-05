@@ -1,0 +1,109 @@
+# ✅ Quiz 6 – Boot Process & Virtual Machines (Answer Key)
+
+---
+
+## 🔌 Boot Process & Kernel
+
+### 1️⃣ The first step when powering on a PC
+
+- ✅ BIOS/UEFI performs POST
+- OS loads directly
+- File explorer opens
+- Shell executes commands
+
+---
+
+### 2️⃣ Who loads the Linux kernel?
+
+- login manager
+- desktop manager
+- ✅ bootloader (GRUB)
+- user root
+
+---
+
+### 3️⃣ Who starts services after kernel loads?
+
+- GPU
+- BIOS
+- ✅ systemd / init
+- user manually
+
+---
+
+### 4️⃣ Which technology allows multiple OS to run on same hardware?
+
+- partition tables
+- ✅ virtualization / hypervisor
+- BIOS setup
+- filesystem links
+
+---
+
+## 🖥️ Virtual Machines
+
+### 5️⃣ The **host** OS runs the:
+
+- ✅ hypervisor
+- guest kernel
+- BIOS
+- RAM controller
+
+---
+
+### 6️⃣ The **guest** OS runs inside:
+
+- partitions only
+- host BIOS directly
+- ✅ a virtual machine
+
+---
+
+## 💽 Storage & Booting
+
+### 7️⃣ Secure Boot is supported by:
+
+- ✅ UEFI
+- BIOS only
+
+---
+
+### 8️⃣ BIOS limitations (choose the correct)
+
+- Supports GPT partitions ✅ ❌?  
+- ✅ Only supports **MBR**
+- Has no mouse support ✅
+- Uses first disk sector to load bootloader ✅
+
+Correct picks:  
+✅ supports MBR  
+✅ text interface  
+✅ loads bootloader from MBR  
+✅ NO secure boot
+
+---
+
+## 🔁 Kernel Knowledge
+
+### 9️⃣ Linux kernel does NOT manage:
+
+- ✅ user accounts
+- memory ✅ (YES, it does)
+- CPU ✅ (YES)
+- processes ✅ (YES)
+
+Correct answer: user accounts ❌ managed by system utilities
+
+---
+
+### 🔟 Boot Process Order (simplified)
+
+1️⃣ BIOS / UEFI  
+2️⃣ POST  
+3️⃣ Bootloader (GRUB)  
+4️⃣ Kernel starts  
+5️⃣ init / systemd runs services ✅
+
+---
+
+✅ DONE — Perfect Score Ready ✅
