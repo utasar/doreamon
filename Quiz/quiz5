@@ -1,0 +1,93 @@
+# ✅ Quiz 5 – Regular Expressions (Answer Key)
+
+---
+
+## 🧩 Pattern Matching Basics
+
+### 1️⃣ Select the regex meaning "start of a line"
+
+- .
+- ✅ ^
+- $
+- *
+
+---
+
+### 2️⃣ Match only **digits** (0-9)
+
+- \w
+- ✅ [0-9]
+- [a-z]
+- D*
+
+---
+
+### 3️⃣ Match **one or more** occurrences
+
+- ?
+- {0,1}
+- ✅ +
+- ^
+
+---
+
+### 4️⃣ Which command performs regex search in files?
+
+- sort
+- sed
+- ✅ grep
+- ln
+
+---
+
+### 5️⃣ Ignore case in grep search
+
+- grep -n
+- ✅ **grep -i**
+- grep -w
+- grep -r
+
+---
+
+## 🔄 Replacement
+
+### 6️⃣ Replace "cat" with "dog" in file.txt
+
+- grep 's/cat/dog/g' file.txt
+- ✅ sed 's/cat/dog/g' file.txt
+- mv cat dog file.txt
+- awk '{cat=dog}'
+
+---
+
+## 🔍 Anchors
+
+### 7️⃣ Match lines ending in `.log`
+
+- ✅ .*\.log$
+- ^.log
+- log*
+- ^\.log$
+
+---
+
+### 8️⃣ Count matches of word “error”
+
+- ✅ grep -c "error" file.txt
+- wc -l error
+- cat -c error
+- sed "error" file.txt
+
+---
+
+### 9️⃣ Show only the matching part
+
+- ✅ grep -o "404"
+- grep -c "404"
+- grep -w "404"
+- head 404
+
+---
+
+## ✅ DONE — Quiz 5 Complete ✅
+
