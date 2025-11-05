@@ -1,0 +1,96 @@
+# ✅ Quiz 7 – Partitions & Filesystems (Answer Key)
+
+---
+
+## 💽 Disk Structure
+
+### 1️⃣ What is stored in a partition table?
+
+- ✅ Information about disk partitions
+- Filesystems inside partitions ❌
+- Boot arguments ❌
+
+---
+
+### 2️⃣ Where is a partition table stored?
+
+- In a folder on the OS ❌
+- ✅ On the disk (beginning of drive)
+- Inside RAM ❌
+
+---
+
+### 3️⃣ Which command views disk partitions?
+
+- cat /proc/cpuinfo ❌
+- ✅ lsblk
+- grep disk ❌
+- passwd ❌
+
+---
+
+## 🧩 Partition Types
+
+### 4️⃣ Which table supports more partitions & newer systems?
+
+- ✅ GPT
+- MBR
+
+---
+
+### 5️⃣ UEFI systems require:
+
+- ext2 filesystem only ❌
+- BIOS boot manager ❌
+- ✅ EFI System Partition (ESP)
+
+---
+
+## 🧱 Filesystems
+
+### 6️⃣ What creates a filesystem on a partition?
+
+- ✅ `mkfs.ext4 /dev/sdb1`
+- mkdir filesystem ❌
+- chown /dev/sdb1 ❌
+
+---
+
+### 7️⃣ What is needed to use a new disk?
+
+Order:
+
+1️⃣ ✅ Create partition table  
+2️⃣ ✅ Create partition(s)  
+3️⃣ ✅ Create filesystem  
+4️⃣ ✅ Mount it
+
+---
+
+### 8️⃣ If a partition is unmounted, data is lost?
+
+- True ❌
+- ✅ False (data still exists on disk)
+
+---
+
+### 9️⃣ Changing partition table erases everything?
+
+- ✅ True  
+(Manipulating partition tables typically removes access to data — exam expects True)
+
+---
+
+## 🛠️ Commands to Remember
+
+| Action | Command |
+|--------|---------|
+| View disks | `lsblk` |
+| Partition disk | `fdisk` / `gdisk` |
+| Format filesystem | `mkfs.ext4 /dev/sdx1` |
+| Mount filesystem | `mount /dev/sdx1 /mnt` |
+| Auto-mount | edit `/etc/fstab` |
+
+---
+
+✅ 13/13 Full Marks Ready ✅
