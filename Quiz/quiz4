@@ -1,0 +1,93 @@
+# ✅ Quiz 4 – Scripting (Answer Key)
+
+---
+
+## 🔎 awk + eval.sh script
+
+### 1️⃣ Which `awk` prints names starting with J?
+
+- awk '$0 ~ /J/ { print $1 }'
+- awk '$0 ~ /J/ { print $0 }'
+- ✅ **awk '$1 ~ /^J/ { print $1 }'**
+- awk '$1 ~ /J/ { print $1 }'
+
+---
+
+### Refer to script `eval.sh`
+```bash
+#!/bin/bash
+a=""
+b=""
+while getopts "n:a:" opt; do
+  case $opt in
+    n) a=$OPTARG ;;
+    a) b=$OPTARG ;;
+    \?) echo "Usage: $0 [-n a] [-a b]"; exit 1 ;;
+  esac
+done
+
+echo "$a"
+if [[ $b -gt 55 ]]; then
+  echo "bubbles"
+else
+  echo "b"
+fi
+```
+
+---
+
+### 2️⃣ Output:
+```
+Bob
+bubbles
+```
+
+✅ **./eval.sh -n Bob -a 60**
+
+---
+
+### 3️⃣ Output:
+```
+Sam
+b
+```
+
+✅ **./eval.sh -n Sam -a 10**
+
+---
+
+### 4️⃣ Output:
+```
+Usage: eval.sh [-n a] [-a b]
+```
+
+✅ **./eval.sh -z test**
+
+---
+
+## 🔤 sed text fixing
+
+Input:
+```
+@ppl3
+b@n@n@s
+p1n3@ppl3s
+```
+
+### 5️⃣ Which sed commands restore words? (select 3)
+
+✅ **sed 's/@/a/g'**  
+✅ **sed 's/3/e/g'**  
+✅ **sed 's/1/i/g'**
+
+---
+
+## 🔍 History + grep
+
+### 6️⃣ Find `rm` in history (must use pipe)
+
+✅ **history | grep rm**
+
+---
+
+## ✅ DONE — COPY & PASTE INTO GitHub 📌
