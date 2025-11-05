@@ -1,0 +1,114 @@
+# ✅ Quiz 8 – Linux Processes (Answer Key)
+
+---
+
+## 📌 Process Basics
+
+### 1️⃣ Unique identifier for a process?
+
+- UID ❌  
+- GID ❌  
+- KID ❌  
+- ✅ PID ✅
+
+---
+
+### 2️⃣ Metadata stored about processes (Select all correct)
+
+✅ process ID (PID)  
+✅ parent process ID (PPID)  
+✅ user & group ID  
+✅ process state  
+✅ memory & cpu usage  
+
+❌ CPU temperature  
+❌ number of hard links  
+❌ user password  
+❌ score on this quiz
+
+---
+
+## 🔄 Process States
+
+### 3️⃣ Match state → definition
+
+| State | Meaning |
+|-------|---------|
+| ✅ **R** | Running |
+| ✅ **S** | Sleeping / waiting for event |
+| ✅ **Z** | Zombie (terminated, not cleaned by parent) |
+| ✅ **T** | Stopped (`CTRL+Z`) |
+| ✅ **D** | Uninterruptible sleep (I/O wait) |
+
+---
+
+## 👶 Orphan Processes
+
+### 4️⃣ Who adopts child if parent dies?
+
+- ✅ `init` / `systemd`
+
+---
+
+## 🔪 Signals & Control
+
+### 5️⃣ Match signals to meaning
+
+| Signal | Example | Purpose |
+|--------|---------|---------|
+| ✅ SIGINT / SIGTERM | `kill PID`, `Ctrl + C` | Interrupt / Graceful stop |
+| ✅ SIGKILL | `kill -9 PID` | Force stop — cannot be blocked |
+| ✅ SIGSTOP / SIGTSTP | `CTRL+Z`, `kill -19 PID` | Stop (can be resumed) |
+
+---
+
+### 6️⃣ Start background process?
+
+✅ Add `&` → `sleep 5 &`
+
+---
+
+### 7️⃣ Background continues if terminal exits?
+
+- ✅ False  
+(background jobs die with terminal unless nohup/tmux)
+
+---
+
+## 🖥️ tmux
+
+### 8️⃣ tmux prefix
+
+✅ **CTRL + B**
+
+---
+
+## ⚙️ systemctl Commands
+
+### 9️⃣ Match command → function
+
+| Command | Meaning |
+|--------|---------|
+| ✅ `systemctl status service` | Show logs + running state |
+| ✅ `systemctl start` / `stop` | Control running state |
+| ✅ `systemctl reload` / `restart` | Apply config changes |
+| ✅ `systemctl enable` / `disable` | Auto-start at boot |
+
+---
+
+# ✅ Quick Reference
+
+| Task | Command |
+|------|---------|
+| See processes | `ps aux` / `top` / `htop` |
+| Find by name | `pgrep name` |
+| Stop foreground | `Ctrl+C` |
+| Suspend | `Ctrl+Z` |
+| Move to background | `bg %1` |
+| Bring to foreground | `fg %1` |
+
+---
+
+✅ Score: **11.25 / 12**  
+✅ All answers confirmed ✅
+
