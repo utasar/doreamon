@@ -1,0 +1,96 @@
+# Quiz 9 - Compiling & Makefiles - Complete Answer Key
+
+## Question 1
+**Question:** Given source code, the corresponding compiler or interpreter needs to be installed on the system in order to compile and / or run the code.
+
+**Options:**
+- [x] True
+- [ ] False
+
+**Correct Answer:** True
+
+## Question 2
+**Question:** Given the following Makefile contents:
+hello: code.c
+gcc -E code.c
+
+rainbow:
+gcc -Wall -o prog code.c
+
+batman:
+./prog
+What make command will compile source code in code.c?
+
+**Options:**
+- [ ] `./code.c`
+- [ ] `make batman`
+- [ ] `make hello`
+- [x] `make rainbow`
+- [ ] `make`
+
+**Correct Answer:** `make rainbow`
+
+## Question 3
+**Question:** If c/c++ code is compiled in gcc on a Unix / Linux system, the compiled program will run in Windows.
+
+**Options:**
+- [ ] True
+- [x] False
+
+**Correct Answer:** False
+
+## Question 4
+**Question:** A compiled Java program can run on any system with a JVM installed.
+
+**Options:**
+- [x] True
+- [ ] False
+
+**Correct Answer:** True
+
+## Question 5
+**Question:** In order to call the interpreter / compiler without specifying what folder it's located in (for example, typing `java` instead of the full path to the java virtual machine), the folder the interpreter / compiler is located in need to be listed in what environment variable?
+
+**Correct Answer:** `PATH`
+
+## Question 6
+**Question:** How would you install python 3 on your system?
+
+**Correct Answer:** `sudo apt install python3`
+
+## Question 7
+**Question:** Correctly order the 4 steps of the C/C++ compilation process
+
+**Correct Order:**
+1. pre-processing
+2. compiling
+3. assembling
+4. linking
+
+## Question 8
+**Question:** Commits made on a branch exist on that branch. Other branches will show their respective states of the files based on commits made to those branches until a merge between branches occurs.
+
+**Options:**
+- [x] True
+- [ ] False
+
+**Correct Answer:** True
+
+## Question 9
+**Question:** I am on branch hotfix and need to switch to the main branch. Write a command that will switch me to the main branch.
+
+**Correct Answer:** `git checkout main`  
+*Alternative accepted answer:* `git switch main`
+
+## Question 10
+**Question:** I have changes (commits) on branch GUI-dev that need to be merged to the main branch. How can I merge the commits on GUI-dev with those on main?
+
+**Options:**
+- [x] (While on the main branch) `git merge GUI-dev`
+- [ ] `git push --set-upstream origin GUI-dev`
+- [ ] (While on the GUI-dev branch) `git merge main`
+- [ ] `git merge`
+- [ ] (While on the main branch) `git merge main`
+- [ ] (While on the GUI-dev branch) `git merge GUI-dev`
+
+**Correct Answer:** (While on the main branch) `git merge GUI-dev`
