@@ -1,0 +1,694 @@
+# CEG 2350 – Final Exam Bash Notes
+
+
+################################################################################
+# INTRO / SHELLS / SSH
+################################################################################
+
+# Common shells
+# - Windows: cmd.exe, PowerShell (pwsh)
+# - Linux/Mac: sh, bash, zsh
+
+# SSH – Secure Shell
+# Basic structure:
+#   ssh [options] user@host
+# Examples:
+#   ssh alice@example.com
+#   ssh -p 2222 alice@example.com
+#
+# Key files:
+# - Private key (keep secret, 600 permissions):
+#     ~/.ssh/id_rsa
+#     ~/.ssh/id_ed25519
+#   Permissions: chmod 600 ~/.ssh/id_*
+#
+# - Public key:
+#     ~/.ssh/id_rsa.pub
+#     ~/.ssh/id_ed25519.pub
+#
+# - Authorized keys on remote host:
+#     ~/.ssh/authorized_keys
+#   Append your public key there to allow login.
+#
+# - Known hosts:
+#     ~/.ssh/known_hosts (stores server host keys to prevent MITM)
+
+################################################################################
+# FILES, DIRECTORIES, AND OS STRUCTURE
+################################################################################
+
+# Basic filesystem structure (Linux / Mac):
+#   /
+#   ├── bin     # Essential user binaries
+#   ├── sbin    # System binaries
+#   ├── etc     # Config files
+#   ├── home    # Home dirs: /home/user
+#   ├── root    # Root user’s home
+#   ├── tmp     # Temporary
+#   ├── var     # Variable data (logs, spools)
+#   ├── usr     # User programs
+#   └── dev     # Device files
+#
+# Windows:
+#   C:\, D:\, etc.
+#   Program Files, Users, Windows, etc.
+
+# Files vs Directories:
+# - File: regular data, text, binaries, etc.
+# - Directory: container mapping names -> inodes / files.
+
+# Basic commands:
+#   ls                # list files
+#   ls -l             # long listing
+#   ls -a             # include hidden files
+#   cp src dest       # copy file
+#   cp -r dir1 dir2   # copy directory recursively
+#   mkdir dir         # make directory
+#   rmdir dir         # remove EMPTY directory
+#   rm file           # remove file
+#   rm -r dir         # recursive remove (careful!)
+#   mv old new        # move or rename
+#   cd dir            # change directory
+#   cd                # go to $HOME
+#   pwd               # print working directory
+#
+# Viewing / editing:
+#   cat file          # print full file
+#   head -n 10 file   # first 10 lines
+#   tail -n 10 file   # last 10 lines
+#   less file         # page through file (q to quit)
+#   more file         # similar to less
+#   touch file        # create empty file OR update timestamps
+#
+# Editors:
+#   vim file          # open vim text editor
+#   nano file         # (if installed) simple editor
+
+# Filenames & extensions:
+# - Linux does not require extensions to identify type.
+# - Extensions are convention (.sh, .c, .py, .txt, .log).
+# - Windows heavily relies on extensions (.exe, .bat, .txt).
+
+################################################################################
+# PERMISSIONS, OWNERSHIP, AND SHARING
+################################################################################
+
+# Permission bits (Linux):
+#   rwx rwx rwx
+#   |   |   |
+#   |   |   └── other (everyone else)
+#   |   └────── group
+#   └────────── user (owner)
+#
+# r = 4, w = 2, x = 1
+# Example: 755 = rwx r-x r-x
+#
+# Change mode:
+#   chmod 644 file     # rw-r--r--
+#   chmod u+x file     # add execute for user
+#   chmod g-w file     # remove write for group
+#
+# Change owner & group:
+#   chown user file
+#   chown user:group file
+#   chgrp group file
+#
+# Users & groups (commands can vary by distro):
+#   adduser username
+#   deluser username
+#
+# Root / sudo:
+# - root: superuser, UID 0, full privileges.
+# - sudo: run command as root (or another user).
+#   sudo command
+#   sudo -u otheruser command
+
+################################################################################
+# ENVIRONMENT, SHELL CONFIG, UTILITIES
+################################################################################
+
+# Environment variables:
+#   echo "$HOME"
+#   echo "$USER"
+#   echo "$SHELL"
+#   echo "$PATH"
+#
+# Exporting:
+#   VAR=value
+#   export VAR
+#
+# PATH:
+#   echo "$PATH"
+#   export PATH="$HOME/bin:$PATH"    # prepend custom bin
+
+# Shell startup files:
+# - ~/.bashrc        # interactive non-login shells, aliases, functions
+# - ~/.profile       # login shells (often sources .bashrc)
+# Common customizations:
+#   alias ll='ls -alF'
+#   alias la='ls -A'
+#   alias l='ls -CF'
+
+# Useful commands:
+#   diff file1 file2          # compare files
+#   find /path -name "pat"    # find files by name
+#   file file                  # show file type
+#   wc file                    # word/line/byte count
+#       wc -l file             # lines only
+#   sort file
+#   sort file | uniq          # remove duplicates
+#   sort file | uniq -c       # count duplicates
+#   whereis ls                # where binary, source, man pages are
+#   which ls                  # which executable is run by shell
+
+################################################################################
+# I/O STREAMS, REDIRECTION, PIPES
+################################################################################
+
+# Standard streams:
+#   stdin  = 0
+#   stdout = 1
+#   stderr = 2
+
+# Redirection:
+#   cmd > file       # stdout to file (overwrite)
+#   cmd >> file      # stdout append
+#   cmd 2> err.log   # stderr only
+#   cmd &> all.log   # stdout + stderr (bash)
+#   cmd < input.txt  # stdin from file
+#
+# Pipes:
+#   cmd1 | cmd2      # stdout of cmd1 -> stdin of cmd2
+#
+# tee:
+#   cmd | tee out.log        # view + write to file
+#   cmd | tee -a out.log     # append
+
+################################################################################
+# EXECUTING SCRIPTS
+################################################################################
+
+# 1) Source into current shell:
+#   source script.sh
+#   . script.sh
+#
+# 2) Run with interpreter explicitly:
+#   bash script.sh
+#   sh script.sh
+#
+# 3) Shebang (#!) and execute directly:
+#   #!/usr/bin/env bash
+#   # or: #!/bin/bash
+#   chmod +x script.sh
+#   ./script.sh
+#
+# 4) Run from anywhere:
+#   - Put script in a directory that’s in $PATH, e.g. ~/bin
+#   - Or add script directory to PATH:
+#       export PATH="$HOME/bin:$PATH"
+
+################################################################################
+# BASH SCRIPTING BASICS
+################################################################################
+
+# Variables
+#   NAME="Alice"
+#   echo "$NAME"
+#
+# Reading input:
+#   read -p "Enter name: " NAME
+#
+# echo vs printf:
+#   echo "Hello $NAME"
+#   printf "Hello %s\n" "$NAME"
+
+# Positional arguments:
+#   $0  # script name
+#   $1  # first argument, etc.
+#   $#  # number of arguments
+#   "$@"  # all args, quoted
+#
+# Example:
+#   ./myscript.sh arg1 arg2
+
+# Conditionals:
+# test / [ ]
+#   [ condition ]  # spaces matter!
+#
+# Common tests:
+#   [ -f file ]    # regular file exists
+#   [ -d dir ]     # directory exists
+#   [ -x file ]    # executable
+#   [ "$A" = "$B" ]
+#   [ "$A" -lt "$B" ]  # numeric less than
+#
+# if:
+#   if [ condition ]; then
+#       commands
+#   elif [ other ]; then
+#       commands
+#   else
+#       commands
+#   fi
+#
+# for:
+#   for x in a b c; do
+#       echo "$x"
+#   done
+#
+# while:
+#   while [ condition ]; do
+#       commands
+#   done
+#
+# case:
+#   case "$var" in
+#       start) echo "starting";;
+#       stop)  echo "stopping";;
+#       *)     echo "unknown";;
+#   esac
+
+# getopts (parsing options):
+#   while getopts "ab:c:" opt; do
+#       case "$opt" in
+#           a) echo "option a";;
+#           b) echo "option b with arg $OPTARG";;
+#           c) echo "option c with arg $OPTARG";;
+#           ?) echo "usage..."; exit 1;;
+#       esac
+#   fi
+
+# Functions:
+#   my_func() {
+#       echo "In function"
+#   }
+#   my_func
+
+################################################################################
+# REGULAR EXPRESSIONS & TEXT TOOLS
+################################################################################
+
+# grep – search text
+#   grep "pattern" file
+#   grep -i "pattern" file   # ignore case
+#   grep -r "pattern" dir    # recursive
+#   egrep / grep -E for extended regex
+
+# sed – stream editor (search/replace, etc.)
+#   sed 's/old/new/' file       # replace first match on each line
+#   sed 's/old/new/g' file      # replace all matches
+#   sed -n '5,10p' file         # print lines 5–10
+
+# awk – text processing (field-based)
+#   awk '{print $1}' file       # print first field
+#   awk -F: '{print $1 $3}' /etc/passwd  # custom delimiter
+#   awk '$3 > 1000 {print $1,$3}' file   # condition + action
+
+################################################################################
+# COMPUTER HARDWARE & VIRTUAL MACHINES
+################################################################################
+
+# Hardware components:
+# - CPU: executes instructions.
+# - RAM: volatile memory.
+# - Motherboard: connects components.
+# - Disks: HDD (spinning), SSD (flash), NVMe (PCIe, very fast).
+# - GPU:
+#     Integrated: built into CPU, shares RAM.
+#     Discrete/Dedicated: separate card, own VRAM.
+
+# Virtual Machines:
+# - Hypervisor: software/layer that manages VMs.
+#     Type 1 (bare metal): runs directly on hardware.
+#     Type 2 (hosted): runs on top of OS.
+#
+# Host considerations:
+# - Sufficient CPU cores
+# - Enough RAM
+# - Disk space
+#
+# Guest install:
+# - Create virtual disk
+# - Allocate CPU/RAM
+# - Attach ISO
+# - Install OS in VM
+
+################################################################################
+# BOOT PROCESS
+################################################################################
+
+# Steps:
+# 1) BIOS / UEFI firmware
+# 2) POST (Power-On Self Test)
+# 3) Bootloader (e.g., GRUB)
+# 4) Kernel loads
+# 5) OS init (systemd or other init system), starts services & user space
+
+################################################################################
+# DEVICES, DISKS, PARTITIONS, FILESYSTEMS
+################################################################################
+
+# Device types:
+# - Block devices: /dev/sda, /dev/nvme0n1, /dev/sr0, USB drives
+# - Character devices: /dev/null, /dev/zero, /dev/random
+
+# Partition tables:
+# - MBR: older, limited to 2 TB, up to 4 primary partitions.
+# - GPT: newer, more partitions, supports large disks.
+
+# Tools:
+#   fdisk /dev/sda    # MBR partitioning
+#   gdisk /dev/sda    # GPT partitioning
+#   parted /dev/sda   # general partition editor
+
+# Filesystems:
+# - Common defaults:
+#     Windows: NTFS
+#     Linux: ext4, xfs, btrfs
+#     macOS: APFS or HFS+
+#
+# - inodes: metadata describing a file (owner, perms, size, etc.), separate from name.
+# - Hard link: another name for same inode.
+# - Symbolic link: special file pointing to another path.
+
+# Link tools:
+#   ln file linkname        # hard link
+#   ln -s target linkname   # symlink
+#   stat file               # detailed metadata including inode
+
+# Disk usage and filesystem tools:
+#   du -sh dir              # directory size summary
+#   df -h                   # free space on filesystems
+#   mkfs.ext4 /dev/sdXn     # create ext4 filesystem (DANGEROUS)
+
+# Mounting:
+#   mount device mountpoint
+#   umount mountpoint
+#
+# - Root filesystem: mounted at /
+# - /etc/fstab: static table of filesystems for automount at boot.
+
+# Compression & archiving:
+#   tar cvf archive.tar dir/          # create tar (no compression)
+#   tar xvf archive.tar               # extract
+#   tar czvf archive.tar.gz dir/      # create gzipped tar
+#   tar xzvf archive.tar.gz           # extract gzip tarball
+#
+#   gzip file                         # compress -> file.gz
+#   gunzip file.gz                    # decompress
+
+################################################################################
+# PROCESS CONTROL & SERVICES
+################################################################################
+
+# Terms:
+# - process: running instance of a program.
+# - application: user-facing program, may be multiple processes.
+# - service/daemon: background process.
+
+# States:
+# - Running
+# - Sleeping (waiting)
+# - Stopped
+# - Zombie (terminated, not reaped by parent)
+# - Orphan (parent died; adopted by init/systemd)
+
+# Process metadata:
+# - PID: process ID
+# - PPID: parent PID
+# - USER: owner
+# - CMD: command
+# - TTY: controlling terminal (or ? for none)
+
+# Viewing processes:
+#   ps aux                  # all processes
+#   ps -ef
+#   top                     # interactive, live view
+#
+# Killing processes:
+#   kill PID                # default SIGTERM
+#   kill -9 PID             # SIGKILL (force)
+#
+# Jobs, foreground/background:
+#   cmd &                   # run in background
+#   jobs                    # list jobs
+#   fg %1                   # bring job 1 to foreground
+#   bg %1                   # resume job 1 in background
+#
+# tmux:
+# - terminal multiplexer; multiple panes/sessions in one terminal.
+# - persists sessions across disconnects.
+
+# systemd & services:
+#   systemctl status name.service
+#   systemctl start name.service
+#   systemctl stop name.service
+#   systemctl restart name.service
+#   systemctl reload name.service
+#
+#   systemctl enable name.service   # start at boot
+#   systemctl disable name.service
+#
+# Unit file sections:
+#   [Unit], [Service], [Install] etc.
+
+# Logs:
+#   journalctl -u name.service      # logs for a specific service
+#   journalctl -xe                  # recent logs + errors
+
+################################################################################
+# PROGRAMMING, COMPILATION, MAKEFILES
+################################################################################
+
+# Languages:
+# - Interpreted: bash, python (run by interpreter at runtime).
+# - Compiled: C, C++, etc. (compiled to native machine code).
+# - Java: compiled to bytecode (.class, .jar) by JDK tools, run on JVM.
+
+# C/C++ build steps:
+# 1) Preprocessor: handles #include, #define, macros.
+# 2) Compiler: converts source -> assembly/obj.
+# 3) Assembler: assembly -> machine code (.o).
+# 4) Linker: combines objects + libraries -> executable.
+
+# gcc / g++:
+#   gcc main.c -o main           # compile C
+#   g++ main.cpp -o main         # compile C++
+#   gcc -Wall -Wextra -g ...     # common flags
+#
+# Binary formats:
+# - Linux: ELF (Executable & Linkable Format).
+# - Windows: PE/EXE format.
+
+# Make / Makefiles:
+# - Structure:
+#   target: dependencies
+#       action
+#
+# Example:
+#   main: main.o util.o
+#       gcc -o main main.o util.o
+#
+#   main.o: main.c
+#       gcc -c main.c
+#
+# - Usage:
+#   make          # build default target (first)
+#   make clean    # custom clean target
+#
+# Tools:
+#   which gcc          # which compiler executable
+#   whereis gcc        # binary, source, man pages
+#   ldd binary         # list shared library dependencies
+
+################################################################################
+# NETWORKING BASICS
+################################################################################
+
+# Physical layer methods:
+# - Wi-Fi
+# - Ethernet
+# - Fiber
+
+# NIC (Network Interface Card):
+# - Has a MAC address (Media Access Control).
+# - MAC is layer-2 identifier.
+
+# Concepts:
+# - IPv4 vs IPv6
+# - DNS: map names -> IP addresses.
+# - DHCP: dynamically assign IP addresses.
+# - Subnets: division of IP network using netmask.
+# - Routes: how packets get to different subnets.
+# - NAT: Network Address Translation, often at border gateway/router.
+# - Port: logical endpoint for a particular service (e.g., 22 SSH, 80 HTTP).
+# - Socket: IP + port pair.
+# - URL: uniform resource locator, e.g. https://example.com:443/path
+
+# IPv4 subnetting & CIDR:
+# - CIDR: e.g. 192.168.1.0/24
+# - /24 => 255.255.255.0 mask, 256 addresses.
+# - Know how to interpret prefix length and address ranges.
+
+################################################################################
+# NETWORK COMMANDS
+################################################################################
+
+# ip (modern) / ifconfig (older):
+#   ip addr show
+#   ip route show
+#   ifconfig (deprecated on some systems)
+
+# route:
+#   route -n        # show routing table
+
+# Connectivity:
+#   ping host       # ICMP echo
+#   traceroute host # route path (Linux)
+#   tracert host    # Windows equivalent
+#
+# HTTP tools:
+#   curl http://example.com
+#   wget http://example.com/file
+
+# Name resolution:
+#   hostname             # local hostname
+#   nslookup example.com # query DNS servers
+#   dig example.com      # (if installed) more detailed DNS query
+#
+# Other useful:
+#   arp -a               # ARP cache
+#   iptables -L          # firewall rules (legacy interface)
+#   nmap host            # port scanner (if installed)
+#   tcpdump              # packet capture (needs root)
+
+################################################################################
+# FIREWALLS & SECURITY GROUPS
+################################################################################
+
+# Concepts:
+# - Inbound / INPUT / ingress: traffic coming into a host.
+# - Outbound / OUTPUT / egress: traffic leaving a host.
+#
+# Common sense:
+# - Allow only necessary ports from trusted networks.
+# - Example:
+#     SSH (22) from admin IP
+#     HTTP (80) / HTTPS (443) from anywhere.
+#
+# AWS Security Groups:
+# - Describe rules: protocol, port range, source/dest CIDR.
+# - Exam questions likely show SG rules + ask what is allowed.
+
+################################################################################
+# NETWORK PROTOCOLS
+################################################################################
+
+# HTTP:
+# - Unencrypted, port 80.
+#
+# HTTPS:
+# - HTTP over TLS, port 443.
+# - Uses certificates signed by Certificate Authorities (CAs).
+#
+# SSH:
+# - Encrypted remote shell, default port 22.
+# - Uses key pairs or passwords.
+
+# SSH-related commands:
+#   ssh user@host
+#   ssh -i private_key user@host
+#   ssh-keygen          # generate key pairs
+#   sftp user@host      # FTP over SSH
+#   scp file user@host:/path   # copy over SSH
+
+# SSH files:
+#   ~/.ssh/id_rsa            # private key
+#   ~/.ssh/id_rsa.pub        # public key
+#   ~/.ssh/config            # per-host config
+#   ~/.ssh/known_hosts       # server keys
+#   ~/.ssh/authorized_keys   # allowed client public keys (server side)
+
+################################################################################
+# GIT / VERSION CONTROL
+################################################################################
+
+# Concepts:
+# - Version control: track changes, history, branches, merges.
+# - Git: distributed VCS.
+
+# Cloning with SSH:
+# 1) Create SSH key:
+#      ssh-keygen -t ed25519 -C "you@example.com"
+# 2) Add public key (~/.ssh/id_ed25519.pub) to GitHub.
+# 3) Clone:
+#      git clone git@github.com:owner/repo.git
+
+# Basic Git commands:
+#   git status              # show changes
+#   git add file1 file2     # stage files
+#   git add .               # stage all
+#   git commit -m "msg"     # commit staged changes
+#   git push                # push to remote
+#   git pull                # fetch + merge from remote
+#
+# Branching:
+#   git branch              # list branches
+#   git branch newbranch    # create branch
+#   git checkout newbranch  # switch branch
+#   git checkout -b new     # create + switch
+#
+# Merging:
+#   git checkout main
+#   git merge feature-branch
+#
+# Ignore file:
+#   .gitignore              # patterns of files to ignore
+
+################################################################################
+# MISC OPERATING SYSTEM CONCEPTS & DESIGN
+################################################################################
+
+# OS responsibilities:
+# - Process management
+# - Memory management
+# - File system abstraction
+# - Device drivers
+# - Networking stack
+# - Security and access control
+
+# Virtual memory:
+# - Each process has a virtual address space.
+# - OS maps virtual memory -> physical RAM and disk (swap).
+
+# System calls:
+# - Interface between user-space and kernel (open, read, write, fork, exec, etc.).
+
+################################################################################
+# QUICK COMMAND SUMMARY
+################################################################################
+
+# Files & dirs:
+#   ls, cp, mv, rm, mkdir, rmdir, cd, pwd, cat, head, tail, less, more, touch, file, find
+#
+# Permissions / users:
+#   chmod, chown, chgrp, adduser, deluser, sudo
+#
+# Text / search:
+#   grep, sed, awk, sort, uniq, wc, diff
+#
+# Processes:
+#   ps, top, kill, jobs, fg, bg, tmux, systemctl, journalctl
+#
+# Disks / FS:
+#   fdisk, gdisk, parted, mkfs, du, df, mount, umount, ln, stat, tar, gzip
+#
+# Networking:
+#   ip, ifconfig, route, ping, traceroute, curl, wget, hostname, nslookup, arp, iptables, nmap, tcpdump
+#
+# SSH & Git:
+#   ssh, ssh-keygen, scp, sftp, git clone, git status, git add, git commit, git push, git pull, git branch, git checkout, git merge
+
+################################################################################
+# END OF NOTES
+################################################################################
